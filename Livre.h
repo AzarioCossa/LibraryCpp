@@ -6,14 +6,14 @@
 
 class Livre : public Media {
 public:
-    Livre();  // Construtor padrão
+    Livre();
     Livre(const std::string& titre, const std::string& nomAuteur, int anneeParution, int nombrePages);
     
     int getNombrePages() const;
     void setNombrePages(int nombrePages);
 
 private:
-    int nombrePages;  // Atributo específico da classe Livro
+    int nombrePages;
 };
 
 #endif

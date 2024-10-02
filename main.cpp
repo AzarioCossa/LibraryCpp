@@ -1,10 +1,10 @@
-#include "BibliothequeTableau.cpp"
+#include "Mediatheque.cpp"
 #include <iostream>
 
 using namespace std;
 
 int main(void) {
-    BibliothequeTableau bibliothequeTableau;
+    Mediatheque mediatheque;
     bool run = true;
     int choice;
 
@@ -19,19 +19,18 @@ int main(void) {
         cin >> choice;
 
         string titre;
-        Livre livre;
+        Media media;
         string nomAuteur;
         int anneeParution; 
-        int nombrePages;
 
         switch (choice) {
             case 1:
-                bibliothequeTableau.afficherBibliotheque();
+                mediatheque.afficherMediatheque();
                 break;
 
             case 2:
-                cout << "Entrez le titre du livre : ";
-                cin.ignore(); // Pour ignorer le saut de ligne
+                cout << "Entrez le titre de la media: ";
+                cin.ignore();
                 getline(cin, titre);
                 
                 cout << "Entrez le nom de l'auteur : ";
@@ -39,36 +38,33 @@ int main(void) {
                 
                 cout << "Entrez l'année de parution : ";
                 cin >> anneeParution;
-                
-                cout << "Entrez le nombre de pages : ";
-                cin >> nombrePages;
 
-                livre = Livre(titre, nomAuteur, anneeParution, nombrePages);
-                bibliothequeTableau.ajouterLivre(livre);
+                media = Media(titre, nomAuteur, anneeParution);
+                 mediatheque.ajouterMedia(media);
                 break;
 
             case 3:
-                cout << "Entrez le titre du livre à supprimer : ";
-                cin.ignore(); // Pour ignorer le saut de ligne
+                cout << "Entrez le titre de la media à supprimer : ";
+                cin.ignore();
                 getline(cin, titre);
-                bibliothequeTableau.supprimerLivre(titre);
+                 mediatheque.supprimerMedia(titre);
                 break;
 
             case 4:
-                cout << "Entrez le titre du livre à rechercher : ";
-                cin.ignore(); // Pour ignorer le saut de ligne
+                cout << "Entrez le titre de la media à rechercher : ";
+                cin.ignore();
                 getline(cin, titre);
-                livre = bibliothequeTableau.rechercherLivre(titre);
-                if (livre.getTitre() != "") {
-                    cout << "Livre trouvé : " << livre.getTitre() << " - " << livre.getNomAuteur() << endl;
+                media =  mediatheque.rechercherMedia(titre);
+                if (media.getTitre() != "") {
+                    cout << "Media trouvé : " << media.getTitre() << " - " << media.getNomAuteur() << endl;
                 } else {
-                    cout << "Livre non trouvé." << endl;
+                    cout << "Media non trouvé." << endl;
                 }
                 break;
 
             case 5:
                 run = false;
-                cout << "À plus mon gars !" << endl;
+                cout << "À plus !" << endl;
                 break;
 
             default:
@@ -76,6 +72,6 @@ int main(void) {
                 break;
         }
     } while (run);
-    bibliothequeTableau.~BibliothequeTableau();
+     mediatheque.~Mediatheque();
     return 0;
 }
